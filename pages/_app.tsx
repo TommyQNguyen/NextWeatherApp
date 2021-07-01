@@ -16,8 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider value={client}>
-  <Component {...pageProps} />
-  </Provider>
+      <Component {...pageProps} />
+    </Provider>
   )
 }
 export default MyApp

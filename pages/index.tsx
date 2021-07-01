@@ -1,7 +1,9 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {useQuery} from "urql";
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { useQuery } from "urql";
+
+import { MobileScreen } from "../components/MobileScreen";
 
 const WeatherQuery = `
 {
@@ -18,16 +20,17 @@ const WeatherQuery = `
     }
   }
 }
-`
+`;
 
 export default function Home() {
+  const [result, reExecuteQuery] = useQuery({ query: WeatherQuery });
 
-  const [result, reeecuteQuery] = useQuery({query: WeatherQuery,});
-
-  const {data} = result;
+  const { data } = result;
   console.log(data);
 
   return (
-    <div></div>
-  )
+    <div>
+      <MobileScreen />
+    </div>
+  );
 }
