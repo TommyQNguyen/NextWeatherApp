@@ -2,14 +2,14 @@ import Head from "next/head";
 import Image from "next/image";
 // import styles from "../styles/Home.module.css";
 
-import { useQuery } from "urql";
+// import { useQuery } from "urql";
 
 import { dedupExchange, cacheExchange, fetchExchange } from "@urql/core";
 
 import { withUrqlClient } from "next-urql";
 import styled from "styled-components";
 
-import { MobileScreen } from "../components/MobileScreen";
+// import { MobileScreen } from "../components/MobileScreen";
 
 const Home = () => {
   // const [result, reExecuteQuery] = useQuery({ query: WeatherQuery });
@@ -17,11 +17,7 @@ const Home = () => {
   // const { data } = result;
   // console.log(data);
 
-  return (
-    <Wrapper>
-      <MobileScreen />
-    </Wrapper>
-  );
+  return <Wrapper>Hello</Wrapper>;
 };
 
 export default withUrqlClient((ssrExchange) => ({
@@ -30,9 +26,13 @@ export default withUrqlClient((ssrExchange) => ({
 }))(Home);
 
 const Wrapper = styled.div`
-  background-color: powderblue;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background-image: url("backgroundImage.jpg");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
