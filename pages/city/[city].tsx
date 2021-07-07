@@ -14,7 +14,7 @@ const City = (props) => {
     <Wrapper>
       <MobileScreen>
         <CurrentWeather />
-        <Forecast />
+        <Forecast props={props.weather} />
       </MobileScreen>
     </Wrapper>
   );
