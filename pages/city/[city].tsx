@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { client } from "../../server/helpers";
 
 import { CurrentWeather } from "../../components/CurrentWeather";
+import { Separator } from "../../components/Separator";
 import { Forecast } from "../../components/Forecast";
 
 const City = (props) => {
@@ -14,6 +15,7 @@ const City = (props) => {
     <Wrapper>
       <MobileScreen>
         <CurrentWeather />
+        <Separator />
         <Forecast props={props.weather} />
       </MobileScreen>
     </Wrapper>

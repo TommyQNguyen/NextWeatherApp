@@ -99,7 +99,7 @@ const HighestTemperature = styled.span`
 
 const LowestTemperature = styled.span`
   margin-left: 10px;
-  color: darkslategray;
+  color: gray;
 `;
 
 const WeatherIconContainer = styled.div`
