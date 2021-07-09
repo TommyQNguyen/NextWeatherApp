@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Separator = () => {
-  return <Wrapper>Separator TODO</Wrapper>;
+  return <Wrapper></Wrapper>;
 };
 
 const Wrapper = styled.div`
-  background-color: darkslategray;
-  margin: 50px;
+  border-bottom: 1px solid snow;
+  margin: 20px 50px;
 `;

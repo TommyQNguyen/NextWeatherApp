@@ -3,20 +3,28 @@ import { dedupExchange, cacheExchange, fetchExchange } from "urql";
 import styled from "styled-components";
 
 import { client } from "../../server/helpers";
+import { CityWeather } from "../../types";
 
 import { CurrentWeather } from "../../components/CurrentWeather";
 import { Separator } from "../../components/Separator";
 import { Forecast } from "../../components/Forecast";
+import { HomeButton } from "../../components/HomeButton";
+import { NextPage } from "next";
 
-const City = (props) => {
-  console.log(props.weather);
+type CityPageProps = {
+  weather: CityWeather;
+};
+
+const City: NextPage<CityPageProps> = (props) => {
+  // console.log(props.weather);
 
   return (
     <Wrapper>
       <MobileScreen>
         <CurrentWeather />
         <Separator />
-        <Forecast props={props.weather} />
+        <Forecast forecast={props.weather.forecast} />
+        <HomeButton />
       </MobileScreen>
     </Wrapper>
   );

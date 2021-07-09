@@ -1,78 +1,61 @@
 import styled from "styled-components";
+import {
+  TiWeatherSunny,
+  TiWeatherCloudy,
+  TiWeatherDownpour,
+} from "react-icons/ti";
 
-export const Forecast = (props) => {
+import { WeatherForecast } from "../types";
+
+const secondsToWeekday = (seconds: number) => {
+  const daysOfTheWeek: string[] = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const time = new Date(1970, 0, 1); // Epoch
+  time.setSeconds(seconds);
+  return daysOfTheWeek[time.getDay()];
+};
+
+export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
+  forecast,
+}) => {
+  console.log(forecast);
+  //   console.log(secondsToWeekday(1625886000));
+
   return (
     <Wrapper>
       <Title>Next week</Title>
 
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
-
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
-
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
-
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
-
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
-
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
-
-      <DailyContainer>
-        <Weekday>Monday</Weekday>
-        <TemperatureContainer>
-          <HighestTemperature>25°</HighestTemperature>/
-          <LowestTemperature>15°</LowestTemperature>
-        </TemperatureContainer>
-        <WeatherIconContainer>Icon</WeatherIconContainer>
-      </DailyContainer>
+      {forecast.map((day) => {
+        return (
+          <DailyContainer>
+            <Weekday>{secondsToWeekday(Number(day.date))}</Weekday>
+            <TemperatureContainer>
+              <HighestTemperature>
+                {Math.round(day.maxTemp)}°C
+              </HighestTemperature>
+              /
+              <LowestTemperature>{Math.round(day.minTemp)}°C</LowestTemperature>
+            </TemperatureContainer>
+            <WeatherIconContainer>{day.main}</WeatherIconContainer>
+          </DailyContainer>
+        );
+      })}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   /* background-color: transparent; */
+  width: 90%;
+  margin: auto;
 `;
 
 const Title = styled.h2`
@@ -82,11 +65,13 @@ const Title = styled.h2`
 
 const DailyContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 20px auto;
 `;
 
 const Weekday = styled.span`
+  min-width: 85px;
+  text-align: left;
   color: snow;
 `;
 
@@ -103,5 +88,7 @@ const LowestTemperature = styled.span`
 `;
 
 const WeatherIconContainer = styled.div`
+  width: 55px;
+  text-align: right;
   color: snow;
 `;
