@@ -7,6 +7,12 @@ import {
 
 import { WeatherForecast } from "../types";
 
+const weatherIcons = {
+  Clear: <TiWeatherSunny />,
+  Clouds: <TiWeatherCloudy />,
+  Rain: <TiWeatherDownpour />,
+};
+
 const secondsToWeekday = (seconds: number) => {
   const daysOfTheWeek: string[] = [
     "Sunday",
@@ -27,7 +33,7 @@ export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
   forecast,
 }) => {
   console.log(forecast);
-  //   console.log(secondsToWeekday(1625886000));
+  // console.log(weatherIcons["Clouds"]);
 
   return (
     <Wrapper>
@@ -35,7 +41,7 @@ export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
 
       {forecast.map((day) => {
         return (
-          <DailyContainer>
+          <DailyContainer key={day.date}>
             <Weekday>{secondsToWeekday(Number(day.date))}</Weekday>
             <TemperatureContainer>
               <HighestTemperature>
@@ -44,7 +50,10 @@ export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
               /
               <LowestTemperature>{Math.round(day.minTemp)}°C</LowestTemperature>
             </TemperatureContainer>
-            <WeatherIconContainer>{day.main}</WeatherIconContainer>
+            {/* <WeatherIconContainer>{day.main}</WeatherIconContainer> */}
+            <WeatherIconContainer>
+              {weatherIcons[day.main]}
+            </WeatherIconContainer>
           </DailyContainer>
         );
       })}
@@ -54,12 +63,12 @@ export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
 
 const Wrapper = styled.div`
   /* background-color: transparent; */
+
   width: 90%;
   margin: auto;
 `;
 
 const Title = styled.h2`
-  margin-left: 35px;
   color: snow;
 `;
 

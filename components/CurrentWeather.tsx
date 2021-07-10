@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
-export const CurrentWeather = () => {
+export const CurrentWeather = ({ cityName, currentWeather }) => {
   return (
     <Wrapper>
-      <Date>Tuesday, July 6th 2021</Date>
-      <City>Saigon, Vietnam</City>
+      <City>{cityName}</City>
       <TemperatureContainer>
-        <Temperature>25°</Temperature>
+        <Temperature>{Math.round(currentWeather)}°C</Temperature>
       </TemperatureContainer>
     </Wrapper>
   );
@@ -23,13 +22,15 @@ const Wrapper = styled.div`
   border-radius: 20px;
 `;
 
-const Date = styled.div`
-  padding: 10px;
-  color: snow;
-`;
+// const Date = styled.div`
+//   padding: 10px;
+//   color: snow;
+// `;
 
 const City = styled.div`
   padding: 10px;
+  font-size: 25px;
+  text-transform: capitalize;
   color: snow;
 `;
 

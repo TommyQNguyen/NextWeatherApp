@@ -6,7 +6,7 @@ import { client } from "../../server/helpers";
 import { CityWeather } from "../../types";
 
 import { CurrentWeather } from "../../components/CurrentWeather";
-import { Separator } from "../../components/Separator";
+
 import { Forecast } from "../../components/Forecast";
 import { HomeButton } from "../../components/HomeButton";
 import { NextPage } from "next";
@@ -16,13 +16,15 @@ type CityPageProps = {
 };
 
 const City: NextPage<CityPageProps> = (props) => {
-  // console.log(props.weather);
+  console.log(props.weather);
 
   return (
     <Wrapper>
       <MobileScreen>
-        <CurrentWeather />
-        <Separator />
+        <CurrentWeather
+          cityName={props.weather.cityName}
+          currentWeather={props.weather.currentWeather}
+        />
         <Forecast forecast={props.weather.forecast} />
         <HomeButton />
       </MobileScreen>
@@ -31,7 +33,7 @@ const City: NextPage<CityPageProps> = (props) => {
 };
 
 export async function getServerSideProps(context: { params: { city: any } }) {
-  console.log("params", context.params);
+  // console.log("params", context.params);
 
   // Trust me, it's not null.
   const { data } = await client!
@@ -66,12 +68,15 @@ export default withUrqlClient((ssrExchange) => ({
 }))(City);
 
 const Wrapper = styled.div`
-  background-color: powderblue;
-
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-image: url("/backgroundClouds.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const MobileScreen = styled.div`
