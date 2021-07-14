@@ -1,27 +1,30 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { dedupExchange, cacheExchange, fetchExchange } from "@urql/core";
 
 import { withUrqlClient } from "next-urql";
 import styled from "styled-components";
 
 const Home = () => {
-  // const { data } = result;
-  // console.log(data);
   const [city, setCity] = useState("");
+  const router = useRouter();
 
-  const handleInput = (event) => {
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCity(event.target.value);
-    // console.log(city);
   };
-  // console.log(city);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    router.push(`/city/${city}`);
+  };
 
   return (
     <Wrapper>
-      <InputContainer>
-        <CityInput onChange={handleInput} />
+      <InputContainer onSubmit={handleSubmit}>
+        <CityInput onChange={handleInput} required />
         <SubmitButton>Get Weather</SubmitButton>
       </InputContainer>
     </Wrapper>
@@ -29,7 +32,7 @@ const Home = () => {
 };
 
 export default withUrqlClient((ssrExchange) => ({
-  url: "http://localhost:3000/api/graphql",
+  url: "/api/graphql",
   exchanges: [dedupExchange, cacheExchange, ssrExchange, fetchExchange],
 }))(Home);
 
@@ -49,6 +52,7 @@ const InputContainer = styled.form`
   display: flex;
   flex-direction: column;
   background-color: cyan;
+  border: 2px solid pink;
 `;
 
 const Title = styled.div`
