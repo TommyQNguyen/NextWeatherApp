@@ -23,6 +23,7 @@ const Button = styled.button`
   color: snow;
   border: none;
   font: inherit;
+  letter-spacing: 2px;
   cursor: pointer;
   border-radius: 10px;
   text-transform: uppercase;
