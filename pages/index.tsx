@@ -2,31 +2,23 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import React, { useState } from "react";
+import React from "react";
 import { dedupExchange, cacheExchange, fetchExchange } from "@urql/core";
 
 import { withUrqlClient } from "next-urql";
 import styled from "styled-components";
 
-import { AiFillGithub, AiOutlineGithub } from "react-icons/ai";
-
-import { CgWebsite } from "react-icons/cg";
-
+import { AppTitle } from "../components/AppTitle";
 import { InputCityForm } from "../components/InputCityForm";
+import { Footer } from "../components/Footer";
 
 const Home = () => {
   return (
     <Wrapper>
       <MobileScreen>
-        <TitleContainer>
-          <TitleTopFragment>Weather 🌨️ </TitleTopFragment>
-          <TitleBottomFragment> 🌪️ Reader</TitleBottomFragment>
-        </TitleContainer>
+        <AppTitle />
         <InputCityForm />
-        <Footer>
-          <Github />
-          <Portfolio />
-        </Footer>
+        <Footer />
       </MobileScreen>
     </Wrapper>
   );
@@ -64,54 +56,4 @@ const MobileScreen = styled.div`
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 20px;
-`;
-
-const TitleContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  /* text-align: center; */
-  color: snow;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px #353636;
-`;
-
-const TitleTopFragment = styled.h1`
-  /* padding: 0; */
-  padding-left: 4rem;
-  margin: 0;
-  text-align: left;
-`;
-
-const TitleBottomFragment = styled.h1`
-  /* padding: 0; */
-  padding-right: 4rem;
-  margin: 0;
-  text-align: right;
-`;
-
-const Footer = styled.div`
-  width: 100%;
-  /* background-color: steelblue; */
-  display: flex;
-  justify-content: space-around;
-`;
-
-const Github = styled(AiFillGithub)`
-  width: 30px;
-  height: auto;
-
-  &:hover {
-    color: snow;
-  }
-`;
-
-const Portfolio = styled(CgWebsite)`
-  width: 30px;
-  height: auto;
-
-  &:hover {
-    color: snow;
-  }
 `;
