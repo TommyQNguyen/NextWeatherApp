@@ -27,4 +27,8 @@ const Button = styled.button`
   cursor: pointer;
   border-radius: 10px;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: plum;
+  }
 `;
