@@ -1,34 +1,33 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 export const CurrentWeather = ({ cityName, currentWeather }) => {
-  // To set something in local storage with a key and its value
-  localStorage.setItem("myCat", "Tom");
+  const [isFavoriteCity, setIsFavoriteCity] = useState(false);
 
-  // Get something from local storage by the key and storing it in a value
-  const cat = localStorage.getItem("myCat");
-
-  // Remove a specific item from local storage using a key
-  localStorage.removeItem("myCat");
-
-  // Clear every key in local storage
-  localStorage.clear();
-
-  console.log(cat);
-  console.log(cityName);
-
-  const [favoriteCity, setFavoriteCity] = useState("");
+  useEffect(() => {
+    setIsFavoriteCity(localStorage.getItem("favoriteCity") === cityName);
+  }, []);
 
   const handleClick = () => {
-    console.log("Clicked");
+    if (isFavoriteCity) {
+      localStorage.removeItem("favoriteCity");
+    } else {
+      localStorage.setItem("favoriteCity", cityName);
+    }
+    setIsFavoriteCity(!isFavoriteCity);
   };
 
   return (
     <Wrapper>
       <ContainerCityAndFavorites>
         <City>{cityName}</City>
-        <EmptyStar onClick={handleClick} />
+
+        {isFavoriteCity ? (
+          <FullStar onClick={handleClick} />
+        ) : (
+          <EmptyStar onClick={handleClick} />
+        )}
       </ContainerCityAndFavorites>
       <TemperatureContainer>
         <Temperature>{Math.round(currentWeather)}°C</Temperature>
@@ -68,6 +67,22 @@ const EmptyStar = styled(AiOutlineStar)`
   width: 35px;
   height: auto;
   color: white;
+  cursor: pointer;
+
+  &:hover {
+    color: yellow;
+  }
+`;
+
+const FullStar = styled(AiFillStar)`
+  width: 35px;
+  height: auto;
+  color: yellow;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 const TemperatureContainer = styled.div`
