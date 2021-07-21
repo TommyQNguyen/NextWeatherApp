@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
 export const CurrentWeather = ({ cityName, currentWeather }) => {
+  // Let's say the user has not set their favorite city yet.
   const [isFavoriteCity, setIsFavoriteCity] = useState(false);
 
+  // Checks if the user's favorite city is the current city.
   useEffect(() => {
     setIsFavoriteCity(localStorage.getItem("favoriteCity") === cityName);
   }, []);
 
+  // A toggle to set the user's favorite city.
   const handleClick = () => {
     if (isFavoriteCity) {
       localStorage.removeItem("favoriteCity");
@@ -45,12 +48,10 @@ const Wrapper = styled.div`
   border-radius: 20px;
 `;
 
-// const Date = styled.div`
-//   padding: 10px;
-//   color: snow;
-// `;
-
 const ContainerCityAndFavorites = styled.div`
+  width: 90%;
+  padding-top: 10px;
+  margin: 10px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,7 +60,9 @@ const ContainerCityAndFavorites = styled.div`
 const City = styled.div`
   padding: 10px;
   font-size: 25px;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
   color: snow;
 `;
 
@@ -71,6 +74,10 @@ const EmptyStar = styled(AiOutlineStar)`
 
   &:hover {
     color: yellow;
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.5);
+    transition: transform 0.5s;
   }
 `;
 
@@ -81,7 +88,11 @@ const FullStar = styled(AiFillStar)`
   cursor: pointer;
 
   &:hover {
-    color: white;
+    color: gray;
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    transition: transform 0.5s;
   }
 `;
 

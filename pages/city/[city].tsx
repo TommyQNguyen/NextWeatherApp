@@ -16,8 +16,6 @@ type CityPageProps = {
 };
 
 const City: NextPage<CityPageProps> = (props) => {
-  console.log(props.weather);
-
   return (
     <Wrapper>
       <MobileScreen>
@@ -33,8 +31,6 @@ const City: NextPage<CityPageProps> = (props) => {
 };
 
 export async function getServerSideProps(context: { params: { city: any } }) {
-  // console.log("params", context.params);
-
   // Trust me, it's not null.
   const { data } = await client!
     .query(

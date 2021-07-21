@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 
 import { AiFillGithub } from "react-icons/ai";
@@ -20,7 +19,6 @@ export const Footer = () => {
 
 const Wrapper = styled.footer`
   width: 100%;
-  /* background-color: steelblue; */
   display: flex;
   justify-content: space-around;
 `;
@@ -32,6 +30,7 @@ const Github = styled(AiFillGithub)`
 
   &:hover {
     color: snow;
+    transition: 0.25s;
   }
 `;
 
@@ -42,6 +41,7 @@ const Portfolio = styled(CgWebsite)`
 
   &:hover {
     color: snow;
+    transition: 0.25s;
   }
 `;
 

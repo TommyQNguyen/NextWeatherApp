@@ -23,12 +23,14 @@ const Button = styled.button`
   color: snow;
   border: none;
   font: inherit;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   cursor: pointer;
   border-radius: 10px;
   text-transform: uppercase;
 
   &:hover {
-    background-color: plum;
+    background-color: snow;
+    color: #002eff;
+    transition: 0.5s;
   }
 `;

@@ -32,12 +32,9 @@ const secondsToWeekday = (seconds: number) => {
 export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
   forecast,
 }) => {
-  console.log(forecast);
-  // console.log(weatherIcons["Clouds"]);
-
   return (
     <Wrapper>
-      <Title>Next week</Title>
+      <Title>Forecast</Title>
 
       {forecast.map((day) => {
         return (
@@ -62,8 +59,6 @@ export const Forecast: React.FC<{ forecast: WeatherForecast[] }> = ({
 };
 
 const Wrapper = styled.div`
-  /* background-color: transparent; */
-
   width: 90%;
   margin: auto;
 `;
