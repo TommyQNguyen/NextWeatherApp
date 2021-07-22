@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+import { Separator } from "../components/Separator";
+
 export const InputCityForm = () => {
   const [city, setCity] = useState("");
   const router = useRouter();
@@ -36,11 +38,7 @@ export const InputCityForm = () => {
 
       {favoriteCity ? (
         <>
-          <SeparatorWrapper>
-            <Separator>
-              <SeparatorText>OR</SeparatorText>
-            </Separator>
-          </SeparatorWrapper>
+          <Separator text="Or" />
           <Link href={`/city/${favoriteCity}`}>
             <FavoriteCityButton>⭐ {favoriteCity} ➝</FavoriteCityButton>
           </Link>
@@ -97,23 +95,6 @@ const SubmitButton = styled.button`
     background-color: rgba(0, 177, 176);
     transition: 0.25s;
   }
-`;
-
-const SeparatorWrapper = styled.div`
-  margin: 10px;
-`;
-
-const Separator = styled.div`
-  width: 100%;
-  text-align: center;
-  border-bottom: 1px solid #000;
-  line-height: 0.1em;
-  margin: 20px 0 20px;
-`;
-
-const SeparatorText = styled.span`
-  background: #e2f6f6;
-  padding: 0 10px;
 `;
 
 const FavoriteCityButton = styled.button`
