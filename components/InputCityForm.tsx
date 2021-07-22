@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { Separator } from "../components/Separator";
+import { FavoriteCityButton } from "../components/FavoriteCityButton";
 
 export const InputCityForm = () => {
   const [city, setCity] = useState("");
@@ -25,26 +25,16 @@ export const InputCityForm = () => {
     console.log(favoriteCity);
   }, []);
 
-  // TODO: Cut TSX in components
-
-  // useEffect(() => {
-  //   console.log(favoriteCity);
-  // }, [favoriteCity]);
-
   return (
     <InputContainer onSubmit={handleSubmit}>
       <CityInput required onChange={handleInput} placeholder="Ho Chi Minh" />
       <SubmitButton>Get Weather</SubmitButton>
 
-      {favoriteCity ? (
+      {favoriteCity && (
         <>
           <Separator text="Or" />
-          <Link href={`/city/${favoriteCity}`}>
-            <FavoriteCityButton>⭐ {favoriteCity} ➝</FavoriteCityButton>
-          </Link>
+          <FavoriteCityButton favoriteCity={favoriteCity} />
         </>
-      ) : (
-        ""
       )}
     </InputContainer>
   );
@@ -93,24 +83,6 @@ const SubmitButton = styled.button`
     font-weight: bold;
     color: snow;
     background-color: rgba(0, 177, 176);
-    transition: 0.25s;
-  }
-`;
-
-const FavoriteCityButton = styled.button`
-  padding: 10px;
-  color: snow;
-  background-color: #2c2c2c;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-
-  &:hover {
-    font-weight: bolder;
-    color: snow;
-    background-color: #504d4df7;
     transition: 0.25s;
   }
 `;

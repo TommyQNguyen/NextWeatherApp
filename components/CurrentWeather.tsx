@@ -2,7 +2,15 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 
-export const CurrentWeather = ({ cityName, currentWeather }) => {
+type CurrentWeatherProps = {
+  cityName: string;
+  currentWeather: number;
+};
+
+export const CurrentWeather: React.FC<CurrentWeatherProps> = ({
+  cityName,
+  currentWeather,
+}) => {
   // Let's say the user has not set their favorite city yet.
   const [isFavoriteCity, setIsFavoriteCity] = useState(false);
 
@@ -20,6 +28,8 @@ export const CurrentWeather = ({ cityName, currentWeather }) => {
     }
     setIsFavoriteCity(!isFavoriteCity);
   };
+
+  console.log(cityName, currentWeather);
 
   return (
     <Wrapper>
